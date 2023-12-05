@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build:ts": "npx esbuild src/index.ts --bundle --platform=node --format=esm --outfile=./build/index.js",
-    "build:wasm": "./bin/cli compile build/index.js -o build/index.wasm",
+    "build:wasm": "./bin/cli compile -d build/index.js -o build/index.wasm",
     "build": "npm run build:ts && npm run build:wasm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
