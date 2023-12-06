@@ -1,4 +1,9 @@
-declare var Javy: any;
+declare var Javy: {
+  IO: any
+  FetchIO: {
+    get: (url: string) => void
+  }
+};
 
 // Read input from stdin
 function readInput() {
@@ -42,11 +47,15 @@ function writeOutput(output) {
   Javy.IO.writeSync(fd, buffer);
 }
 
-export function main(cb) {
+export function fetchGet(url: string) {
+  Javy.FetchIO.get(url)
+}
+
+export async function main(cb) {
   // Read input from stdin
   const input = readInput();
   // Call the function with the input
-  const result = cb(input);
+  const result = await cb(input);
   // Write the result to stdout
   writeOutput(result);
 }
