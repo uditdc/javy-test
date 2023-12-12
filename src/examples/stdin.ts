@@ -14,6 +14,8 @@ async function someValue(): Promise<number> {
 }
 
 entyrMain(async (input: InputProps<Arguments>) => {
+	console.log('\n Example: Stdin')
+	
 	const coder = AbiCoder.defaultAbiCoder()
 	const coded = coder.encode(['string'], [input.args.v])
 
