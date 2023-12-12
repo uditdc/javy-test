@@ -1,6 +1,3 @@
-// Import the fetch polyfill
-import fetch from '../lib/fetch'
-
 ;(async () => {
 	try {
 		const response = await fetch('https://reqres.in/api/products/1', {
