@@ -5,11 +5,11 @@ interface RequestInit {
 
 interface ResponseInit {
 	url: string
-	headers: any
+	headers: unknown
 	ok: boolean
 	type: 'text' | 'json'
 	text: () => string
-	json: () => object | Promise<Object>
+	json: () => object | Promise<object>
 }
 
 export default async function fetch(
@@ -18,8 +18,8 @@ export default async function fetch(
 ): Promise<ResponseInit> {
 	const textOutput = '{}'
 
-	let responseOk = true
-	let responseHeaders = {}
+	const responseOk = true
+	const responseHeaders = {}
 
 	return new Promise((resolve, reject) => {
 		const response: ResponseInit = {

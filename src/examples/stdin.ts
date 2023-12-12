@@ -1,23 +1,21 @@
-import { main } from '../lib/index'
+import { InputProps, entyrMain } from '../lib/index'
 
 import { AbiCoder } from 'ethers'
 
-interface InputProps {
+interface Arguments {
 	n: number
 	v: string
 }
 
 async function someValue(): Promise<number> {
 	return new Promise((resolve) => {
-		setTimeout(() => {
-			resolve(40)
-		}, 300)
+		resolve(40)
 	})
 }
 
-main(async (input: InputProps) => {
+entyrMain(async (input: InputProps<Arguments>) => {
 	const coder = AbiCoder.defaultAbiCoder()
-	const coded = coder.encode(['string'], [input.v])
+	const coded = coder.encode(['string'], [input.args.v])
 
 	return { nonce: 4 + (await someValue()), value: coded }
 })

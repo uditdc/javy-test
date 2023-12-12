@@ -7,12 +7,12 @@
     "example": "examples"
   },
   "scripts": {
-    "build:ts": "npx esbuild src/examples/fetch.ts --bundle --platform=node --format=esm --outfile=./build/index.js",
-    "build:wasm": "/home/udit/Work/experiments/javy-project/javy/target/release/javy compile build/index.js -o build/index.wasm",
+    "build:ts": "npx esbuild src/examples/stdin.ts --bundle --platform=node --format=esm --outfile=./build/index.js",
+    "build:wasm": "javy compile build/index.js -o build/index.wasm",
     "build": "npm run build:ts && npm run build:wasm",
     "invoke": "echo '{ \"n\": 3, \"v\": \"test\" }' | /home/udit/Work/experiments/bls-runtime-deno/deno-bls-runtime/bls-runtime build/index.wasm",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "npx @biomejs/biome format . --write"
+    "format": "npx @biomejs/biome format . --write",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",

@@ -1,7 +1,10 @@
 // Rust APIs ported to JS using Javy
-declare var Javy: {
-	IO: any
+declare let Javy: {
+	IO: {
+		readSync: (fd: number, buffer: Uint8Array) => number
+		writeSync: (fd: number, buffer: Uint8Array) => number
+	}
 	FetchIO: {
-		get: (url: string) => void // Wrapper to Blockless HTTP Get
+		get: (url: string) => void
 	}
 }

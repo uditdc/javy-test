@@ -20,13 +20,12 @@
 //   return { nonce: input.n + (await someValue()), value: coded };
 // });
 
+import { fetchGet } from './lib/index'
+import { AbiCoder } from 'ethers'
 
-import { fetchGet } from "./lib/index";
-import { AbiCoder } from "ethers";
+fetchGet('https://httpbin.org/ip')
 
-fetchGet("https://httpbin.org/ip");
+const coder = AbiCoder.defaultAbiCoder()
+const coded = coder.encode(['string'], ['sdsd'])
 
-const coder = AbiCoder.defaultAbiCoder();
-const coded = coder.encode(["string"], ["sdsd"]);
-
-console.log('ABI: ', coded);
+console.log('ABI: ', coded)
