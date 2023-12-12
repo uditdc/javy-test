@@ -1,10 +1,3 @@
-declare var Javy: {
-  IO: any
-  FetchIO: {
-    get: (url: string) => void
-  }
-};
-
 // Read input from stdin
 function readInput() {
   const chunkSize = 1024;

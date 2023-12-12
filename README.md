@@ -19,5 +19,5 @@ echo '{ "n": 2, "v": "abc" }' | wasmtime run --preload javy_quickjs_provider_v1=
 
 Compile with experimental even loop:
 ```
-cargo build --features experimental_event_loop -p javy-core --target=wasm32-wasi -r
+cargo build --features=experimental_event_loop -p javy-core --target=wasm32-wasi -r
 ```
