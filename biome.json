@@ -8,5 +8,15 @@
 		"rules": {
 			"recommended": true
 		}
+	},
+	"formatter": {
+		"indentStyle": "tab"
+	},
+	"javascript": {
+		"formatter": {
+			"semicolons": "asNeeded",
+			"trailingComma": "none",
+			"quoteStyle": "single"
+		}
 	}
 }
