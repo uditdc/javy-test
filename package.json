@@ -7,10 +7,8 @@
     "example": "examples"
   },
   "scripts": {
-    "build:ts": "npx esbuild src/index.ts --bundle --platform=node --format=esm --outfile=./build/index.js",
-    "build:wasm": "javy compile build/index.js -o build/index.wasm",
-    "build": "npm run build:ts && npm run build:wasm",
-    "invoke": "echo '{ \"n\": 3, \"v\": \"test\" }' | /home/udit/Work/experiments/bls-runtime-deno/deno-bls-runtime/bls-runtime build/index.wasm",
+    "build": "node scripts/build.mjs",
+    "invoke": "echo '{ \"n\": 3, \"v\": \"test\" }' | wasmtime build/index.wasm",
     "format": "npx @biomejs/biome format . --write",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,9 +16,11 @@
   "license": "ISC",
   "devDependencies": {
     "@biomejs/biome": "1.4.1",
-    "esbuild": "^0.19.8"
+    "esbuild": "^0.19.8",
+    "ora": "^7.0.1"
   },
   "dependencies": {
-    "ethers": "^6.9.0"
+    "ethers": "^6.9.0",
+    "viem": "^1.19.13"
   }
 }
