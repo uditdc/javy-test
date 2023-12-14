@@ -1,6 +1,6 @@
 import * as esbuild from 'esbuild'
 import { execSync } from 'child_process'
-import { existsSync, mkdirSync, unlinkSync } from 'fs'
+import { existsSync, mkdirSync } from 'fs'
 import ora from 'ora'
 
 // Build Configuration

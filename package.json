@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
-    "invoke": "echo '{ \"n\": 3, \"v\": \"test\" }' | wasmtime build/index.wasm",
+    "invoke": "bls-runtime build/index.wasm --permission=https://reqres.in",
     "format": "npx @biomejs/biome format . --write",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
