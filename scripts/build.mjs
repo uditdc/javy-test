@@ -3,35 +3,35 @@ import { execSync } from 'child_process'
 import { existsSync, mkdirSync, unlinkSync } from 'fs'
 import ora from 'ora'
 
-// Function to check if a directory exists, and create it if not
-const ensureDirectoryExists = (directory) => {
-	if (!existsSync(directory)) {
-		mkdirSync(directory, { recursive: true })
-	}
-}
-
 // Build Configuration
 const buildConfig = {
 	entryPoints: ['src/examples/fetch.ts'],
 	bundle: true,
 	platform: 'browser',
 	format: 'esm',
-	outfile: './build/index.js'
+	outfile: './build/index.js',
+	alias: {
+		crypto: './src/lib/crypto.js'
+	}
 }
 
 // Loading indicator for build process
-const buildSpinner = ora('Building...').start()
+const buildSpinner = ora('Building JS ...').start()
 
+// Build Step
 try {
-	// Build Step
-	ensureDirectoryExists('./build')
-	await esbuild.build(buildConfig)
-	buildSpinner.succeed('Build completed successfully.')
+	// Create directory if does not exist
+	if (!existsSync('./build')) {
+		mkdirSync('./build', { recursive: true })
+	}
 
-	const javySpinner = ora('Building WASM...').start()
+	await esbuild.build(buildConfig)
+	buildSpinner.succeed('JS built successfully.')
+
+	const javySpinner = ora('Building WASM ...').start()
 	// Compile to WebAssembly
 	execSync('javy compile ./build/index.js -o ./build/index.wasm')
-	javySpinner.succeed('Build WASM completed successfully.')
+	javySpinner.succeed('WASM built successfully.')
 
 	// // Clean Up: Delete index.js file
 	// const indexPath = './build/index.js';
