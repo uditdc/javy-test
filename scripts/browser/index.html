@@ -1,30 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebAssembly Example</title>
+    <title>Blockless Browser Runtime</title>
 </head>
+
 <body>
-    <h1>WebAssembly Example</h1>
+    <h1>Blockless Browser Runtime</h1>
 
-    <script>
-        // Asynchronous function to load and instantiate the WebAssembly module
-        async function initWasm() {
-            // Fetch the Wasm file
-            const response = await fetch('example.wasm');
-            const buffer = await response.arrayBuffer();
-
-            // Instantiate the WebAssembly module
-            const module = await WebAssembly.compile(buffer);
-            const instance = await WebAssembly.instantiate(module);
-
-            // Call a function from the WebAssembly module (assuming there is a function named "main")
-            instance.exports.main();
-        }
-
-        // Call the initialization function
-        initWasm();
-    </script>
+    <script src="./dist//index.js"></script>
 </body>
+
 </html>
