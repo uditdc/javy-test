@@ -33,14 +33,14 @@ try {
 	execSync('javy compile ./build/index.js -o ./build/index.wasm')
 	javySpinner.succeed('WASM built successfully.')
 
-	// // Clean Up: Delete index.js file
-	// const indexPath = './build/index.js';
-	// if (existsSync(indexPath)) {
-	//   unlinkSync(indexPath);
-	//   console.log('Deleted index.js file after build.');
-	// } else {
-	//   console.warn('index.js file not found. Unable to delete.');
-	// }
+	// Clean Up: Delete index.js file
+	const indexPath = './build/index.js';
+	if (existsSync(indexPath)) {
+	  unlinkSync(indexPath);
+	  console.log('Deleted index.js file after build.');
+	} else {
+	  console.warn('index.js file not found. Unable to delete.');
+	}
 } catch (error) {
 	buildSpinner.fail('Build failed.')
 	console.error(error)
