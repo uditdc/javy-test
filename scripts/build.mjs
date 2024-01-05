@@ -1,11 +1,11 @@
 import * as esbuild from 'esbuild'
 import { execSync } from 'child_process'
-import { existsSync, mkdirSync } from 'fs'
+import { existsSync, mkdirSync, unlinkSync } from 'fs'
 import ora from 'ora'
 
 // Build Configuration
 const buildConfig = {
-	entryPoints: ['src/examples/fetch.ts'],
+	entryPoints: ['src/examples/stdin.ts'],
 	bundle: true,
 	platform: 'browser',
 	format: 'esm',
@@ -32,16 +32,19 @@ try {
 	// Compile to WebAssembly
 	execSync('javy compile ./build/index.js -o ./build/index.wasm')
 	javySpinner.succeed('WASM built successfully.')
-
-	// Clean Up: Delete index.js file
-	const indexPath = './build/index.js';
-	if (existsSync(indexPath)) {
-	  unlinkSync(indexPath);
-	  console.log('Deleted index.js file after build.');
-	} else {
-	  console.warn('index.js file not found. Unable to delete.');
-	}
 } catch (error) {
 	buildSpinner.fail('Build failed.')
 	console.error(error)
+}
+
+// Clean Up: Delete index.js file
+const cleanupSpinner = ora('Cleaning up ...').start()
+const indexPath = './build/index.js'
+if (existsSync(indexPath)) {
+	unlinkSync(indexPath)
+	// console.log('Deleted index.js file after build.');
+	cleanupSpinner.succeed('Cleanup successful.')
+} else {
+	// console.warn('index.js file not found. Unable to delete.');
+	cleanupSpinner.error('Cleanup failed.')
 }
