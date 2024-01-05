@@ -30,8 +30,14 @@ export function readInput(): InputProps<unknown> {
 		{ bufferOffset: 0, finalBuffer: new Uint8Array(totalBytes) }
 	)
 
+	let args = {}
+
+	try {
+		args = JSON.parse(new TextDecoder().decode(finalBuffer))
+	} catch {}
+
 	return {
-		args: JSON.parse(new TextDecoder().decode(finalBuffer))
+		args
 	}
 }
 
@@ -40,6 +46,6 @@ export function writeOutput(output: object): void {
 	const encodedOutput = new TextEncoder().encode(JSON.stringify(output))
 	const buffer = new Uint8Array(encodedOutput)
 	// Stdout file descriptor
-	const fd = 1
+	const fd = 2
 	Javy.IO.writeSync(fd, buffer)
 }
